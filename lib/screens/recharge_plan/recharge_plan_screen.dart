@@ -3,6 +3,7 @@ import 'package:recharge_app/screens/recharge_plan/widgets/chips.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/searh_plans.dart';
 
 import '../../common_libs.dart';
+import '../../common_widgets/common_widgets.dart';
 import '../mobile_recharge/widgets/mobile_recharge_widgets.dart';
 import '../mobile_recharge/widgets/search_bar.dart';
 
@@ -28,16 +29,22 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
             child: Column(
               children: [
                 MobileRechargeAppBar(title: 'Select a recharge plan'),
-                Flexible(child: Column(
+            Flexible(
+              child: Column(
                 children: [
-                  AdImage(),
+                  // AdImage(),
+                  CarouselSliderWidget(),
+                  SizedBox(height: 8.h,),
                   Card(
                     child: Column(
                       children: [
+                        SizedBox(height: 8.h,),
                         ListTile(
                           leading: Image.asset('assets/logo-airtel.png'),
                           title: Column(
                             children: [
+
+
                               Text(widget.displayName, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),),
                               SizedBox(height: 5.h,),
                               Text(widget.displayNumber, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),

@@ -2,6 +2,7 @@ import 'package:recharge_app/screens/mobile_recharge/widgets/recent_contacts.dar
 import 'package:recharge_app/screens/mobile_recharge/widgets/search_bar.dart';
 
 import '../../common_libs.dart';
+import '../../common_widgets/common_widgets.dart';
 import 'widgets/mobile_recharge_widgets.dart';
 
 class MobileRechargeScreen extends StatefulWidget {
@@ -23,16 +24,16 @@ class _MobileRechargeScreenState extends State<MobileRechargeScreen> {
             children: [
               MobileRechargeAppBar(title: 'Mobile Recharge'),
               Flexible(
-                flex: 10,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AdImage(),
+                    CarouselSliderWidget(),
                     SerachBar(),
-                    Flexible(
-                      flex: 4,
+                    Expanded(
+                      flex: 2,
                         child: RecentContacts()),
-                    Flexible(
-                        flex: 6,
+                    Expanded(
+                        flex: 2,
                         child: ContactList()),
 
                   ],

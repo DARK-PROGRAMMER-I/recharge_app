@@ -11,6 +11,8 @@ class _RecentContactsState extends State<RecentContacts> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 375.w,
+      height: 249.h,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -27,35 +29,40 @@ class _RecentContactsState extends State<RecentContacts> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
               child: Text('Recently Paid')),
-          Container(
-            width: 375.w,
-            height: 249.h,
+          Expanded(
             child: ListView.builder(
               padding: EdgeInsets.zero,
               itemCount: 3,
               itemBuilder: (context, index){
                 return Column(
                   children: [
-                    // SizedBox(height: 20.h,),
-                    ListTile(
-                      leading: Image.asset('assets/logo-airtel.png'),
-                      title: Column(
-                        children: [
-                          Text('James Warner', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),),
-                          SizedBox(height: 5.h,),
-                          Text('+91 8087 000 XXX', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),
-                          SizedBox(height: 5.h,),
-                          Text('Plan of Rs.130 expires on 20 Oct 2022', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),),
 
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    Container(
+                      height: 64.h,
+                      child: Expanded(
+                        child: ListTile(
+                          leading: Image.asset('assets/logo-airtel.png'),
+                          title: Column(
+                            children: [
+                              Text('James Warner', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),),
+                              SizedBox(height: 5.h,),
+                              Text('+91 8087 000 XXX', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),
+                              SizedBox(height: 5.h,),
+                              Text('Plan of Rs.130 expires on 20 Oct 2022', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),),
+
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, size: 15,color: Colors.black,)),
+                        ),
                       ),
-                      trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, size: 15,color: Colors.black,)),
                     ),
-                    Divider()
+                    SizedBox(height: 10.h,),
+                    Divider(),
+                    SizedBox(height: 10.h,),
                   ],
                 );
               },
