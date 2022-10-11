@@ -1,3 +1,5 @@
+import 'package:recharge_app/screens/recharge_plan/recharge_plan_screen.dart';
+
 import '../../../common_libs.dart';
 
 Future<List<Contact>> getContacts() async {
@@ -16,45 +18,71 @@ class ContactList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getContacts(),
-      builder: (context, AsyncSnapshot<List<Contact>> snapshot) {
-        print(snapshot.data?[0].displayName);
-        if (snapshot.data == null) {
-          return const Center(
-            child:
-            SizedBox(height: 50, child: CircularProgressIndicator()),
-          );
-        }
-        return ListView.builder(
-          padding: EdgeInsets.zero,
-            itemCount: snapshot.data?.length,
-            itemBuilder: (context, index) {
-              Contact contact = snapshot.data![index];
-              return Column(children: [
-                ListTile(
-                  leading: const CircleAvatar(
-                    radius: 20,
-                    child: Icon(Icons.person),
+    return Container(
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.r),
+          boxShadow: [
+            BoxShadow(
+                offset: Offset(2, 2),
+                blurRadius: 12,
+                color: Colors.black12
+            )
+          ]
+      ),
+      child: FutureBuilder(
+        future: getContacts(),
+        builder: (context, AsyncSnapshot<List<Contact>> snapshot) {
+          print(snapshot.data?[0].displayName);
+          if (snapshot.data == null) {
+            return const Center(
+              child:
+              SizedBox(height: 50, child: CircularProgressIndicator()),
+            );
+          }
+          return ListView.builder(
+            padding: EdgeInsets.zero,
+              itemCount: snapshot.data?.length,
+              itemBuilder: (context, index) {
+                Contact contact = snapshot.data![index];
+                return Column(children: [
+                  SizedBox(height: 10.h,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=> RechargePlanScreen(
+                        displayName: contact.displayName,
+                        displayNumber: contact.phones[0],
+                      )));
+                    },
+                    child: ListTile(
+                      leading: const CircleAvatar(
+                        radius: 20,
+                        child: Icon(Icons.person),
+                      ),
+                      title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Text(contact.displayName, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),),
+                        SizedBox(height: 5.h,),
+                      Text(contact.phones[0].toString(), style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),
+                      ],
+                    ),
+                      trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, size: 15,color: Colors.black,)),
+                    ),
                   ),
-                  title: Text(contact.displayName),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(contact.phones[0].toString()),
-                    ],
-                  ),
-                ),
-                const Divider()
-              ]);
-            });
-      },
+                  const Divider()
+                ]);
+              });
+        },
+      ),
     );
   }
 }
 
 class MobileRechargeAppBar extends StatelessWidget {
-  const MobileRechargeAppBar({Key? key}) : super(key: key);
+  final String title;
+  const MobileRechargeAppBar({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +93,11 @@ class MobileRechargeAppBar extends StatelessWidget {
         padding: EdgeInsets.only(left: 5.w, top: 50.h),
         child: Row(
           children: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_outlined, size: 16.h,), color: Colors.white, ),
+            IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon: Icon(Icons.arrow_back_ios_outlined, size: 16.h,), color: Colors.white, ),
             SizedBox(width: 70.w,),
-            Text('Mobile Recharge', style: TextStyle(fontSize: 20.h, color: Colors.white),)
+            Text(title, style: TextStyle(fontSize: 20.h, color: Colors.white),)
           ],
         ),
       ),
@@ -91,9 +121,10 @@ class AdImage extends StatelessWidget {
             topRight: Radius.circular(5)
           ),
 
-          child: Image.asset('assets/1.jpg', fit: BoxFit.cover, height: 120.h,width: double.infinity,)),
+          child: Image.asset('assets/recharge_banner.png', fit: BoxFit.cover, height: 120.h,width: double.infinity,)),
     );
   }
 }
+
 
 

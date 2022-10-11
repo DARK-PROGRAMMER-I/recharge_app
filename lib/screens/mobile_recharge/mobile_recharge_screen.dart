@@ -1,3 +1,6 @@
+import 'package:recharge_app/screens/mobile_recharge/widgets/recent_contacts.dart';
+import 'package:recharge_app/screens/mobile_recharge/widgets/search_bar.dart';
+
 import '../../common_libs.dart';
 import 'widgets/mobile_recharge_widgets.dart';
 
@@ -12,13 +15,32 @@ class _MobileRechargeScreenState extends State<MobileRechargeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          MobileRechargeAppBar(),
-          AdImage(),
-          Expanded(child: ContactList()),
+      backgroundColor: Color(0xffF2F3FF),
+      body: SingleChildScrollView(
+        child: Container(
+          height: 1200.h,
+          child: Column(
+            children: [
+              MobileRechargeAppBar(title: 'Mobile Recharge'),
+              Flexible(
+                flex: 10,
+                child: Column(
+                  children: [
+                    AdImage(),
+                    SerachBar(),
+                    Flexible(
+                      flex: 4,
+                        child: RecentContacts()),
+                    Flexible(
+                        flex: 6,
+                        child: ContactList()),
 
-        ],
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
