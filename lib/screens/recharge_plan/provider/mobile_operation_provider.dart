@@ -34,7 +34,6 @@ class MobileOperationProvider with ChangeNotifier{
 
     try{
       var response = await http.post(Uri.parse(url), body: json.encode(data));
-      print(response.statusCode.toString() + 'State True');
       if (response.statusCode == 200) {
         final msg = jsonDecode(response.body);
         //Check Login Status
@@ -42,7 +41,6 @@ class MobileOperationProvider with ChangeNotifier{
         if (msg[0]['status'] == 'SUCCESS') {
           List<MobileListModel>? mobileOpData =  MobileListModelList.fromJson(msg[1]).data;
           getMobileOpData(mobileOpData);
-          notifyListeners();
           // notifyListeners();
         } else {
         }

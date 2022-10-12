@@ -83,7 +83,7 @@ class MobileRechargeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130.h,
+      height: 110.h,
       color: Color(0xff041e55),
       child: Padding(
         padding: EdgeInsets.only(left: 5.w, top: 50.h),
@@ -92,7 +92,7 @@ class MobileRechargeAppBar extends StatelessWidget {
             title == 'Mobile Recharge' ? SizedBox.shrink():IconButton(onPressed: (){
               Navigator.pop(context);
             }, icon: Icon(Icons.arrow_back_ios_outlined, size: 16.h,), color: Colors.white, ),
-            title == 'Mobile Recharge'  ? SizedBox(width: 100.w,):SizedBox(width: 70.w,),
+            title == 'Mobile Recharge'  ? SizedBox(width: 100.w,):SizedBox(width: 60.w,),
             Center(child: Text(title, style: TextStyle(fontSize: 20.h, color: Colors.white),))
           ],
         ),

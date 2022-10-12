@@ -8,32 +8,46 @@ import '../models/recharge_plan_model.dart';
 
 class PlanListProvider with ChangeNotifier{
 
+  PlanListProvider(){
+    // WidgetsBinding.instance.addPostFrameCallback((_){
+      fetchMobileRechargePlans('1');
+    // });
+
+
+  }
+
   List<RechargePlansListModel>? _stateRechargePlans = [];
   List<RechargePlansListModel>? get stateRechargePlans => _stateRechargePlans;
-  getStateRechargeData(List<RechargePlansListModel>? plan){
+  getRechargePlans(List<RechargePlansListModel>? plan){
     _stateRechargePlans = plan;
     notifyListeners();
   }
 
-  fetchStateOperatiorPlans()async{
+  fetchMobileRechargePlans(String cat_id)async{
     String url = "https://ankretails.com/fastpay/app9/getMobileRechargePlans.php";
     Map<String, dynamic> data = {
       'username': 9090909090,
       'password': 123,
+      'category_id':cat_id
     };
 
     try{
       var response = await http.post(Uri.parse(url), body: json.encode(data));
-      print(response.statusCode.toString() + 'State True');
       if (response.statusCode == 200) {
         final msg = jsonDecode(response.body);
         //Check Login Status
 
         if (msg[0]['status'] == 'SUCCESS') {
-          List<RechargePlansListModel>? mobileRechargeData =  RechargePlansModel.fromJson(msg[1]).data;
-          getStateRechargeData(mobileRechargeData);
-          notifyListeners();
-          // notifyListeners();
+          if(msg.length >1){
+
+          List<RechargePlansListModel>? mobileRechargePlan =  RechargePlansModel.fromJson(msg[1]).data;
+
+            getRechargePlans(mobileRechargePlan);
+            notifyListeners();
+          }else{
+
+            getRechargePlans([]);
+          }
         } else {
         }
       } else {

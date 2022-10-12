@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_libs.dart';
+import '../../recharge_plan/provider/categories_provider.dart';
 import '../../recharge_plan/recharge_plan_screen.dart';
 import '../provider/mobile_recharge_provider.dart';
 
@@ -16,7 +17,7 @@ class _RecentContactsState extends State<RecentContacts> {
   @override
   Widget build(BuildContext context) {
     final rechargeProvider = Provider.of<MobileRechargeProvider>(context);
-
+    final categoryProvider = Provider.of<CategoriesProvider>(context);
     return Container(
       width: 370.w,
       height: 350.h,
@@ -56,6 +57,7 @@ class _RecentContactsState extends State<RecentContacts> {
                           imgLink: rechargeProvider.mobileRechargeData?[index].operatorimage ?? '',
                           displayName: rechargeProvider.mobileRechargeData?[index].rechargePersonName?? 'Name',
                           displayNumber: rechargeProvider.mobileRechargeData?[index].mobileno ?? 'Phone',
+                          length: categoryProvider.categoryData?.length,
                         )));
                       },
                       child: Container(

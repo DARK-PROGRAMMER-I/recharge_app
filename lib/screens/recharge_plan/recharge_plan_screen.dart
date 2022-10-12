@@ -12,33 +12,52 @@ import '../../common_libs.dart';
 import '../../common_widgets/common_widgets.dart';
 import '../mobile_recharge/widgets/mobile_recharge_widgets.dart';
 import '../mobile_recharge/widgets/search_bar.dart';
+import '../pay/pay_screen.dart';
 
 class RechargePlanScreen extends StatefulWidget {
   final String displayName;
   final String displayNumber;
   final String imgLink;
 
-  const RechargePlanScreen({Key? key, required this.displayName, required this.displayNumber, required this.imgLink}) : super(key: key);
+  final int? length;
+  const RechargePlanScreen({Key? key, required this.displayName, required this.displayNumber, required this.imgLink, this.length}) : super(key: key);
 
   @override
   State<RechargePlanScreen> createState() => _RechargePlanScreenState();
 }
 
-class _RechargePlanScreenState extends State<RechargePlanScreen> {
+class _RechargePlanScreenState extends State<RechargePlanScreen> with SingleTickerProviderStateMixin{
+  late TabController _controller;
+  int? number_of_items = 0;
+  int _selectedIndex = 0;
+  @override
+  void initState() {
+    _controller = TabController(length: widget.length!, vsync: this);
+
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+
     final rechrageProvider = Provider.of<RechargePlanProvider>(context);
     final plansProvider = Provider.of<PlanListProvider>(context);
     final categoryProvider = Provider.of<CategoriesProvider>(context);
 
-
+    plansProvider.fetchMobileRechargePlans('${_controller.index +1}');
 
     return DefaultTabController(
       length: categoryProvider.categoryData?.length ?? 3,
       child: Scaffold(
-
         backgroundColor: Color(0xffF2F3FF),
         body: SingleChildScrollView(
+          // padding: EdgeInsets.zero,
           child: Container(
             height: 1200.h,
             child: Column(
@@ -67,7 +86,7 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                   ),
                   Divider(),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                    margin: EdgeInsets.symmetric(horizontal: 5.w,),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -87,50 +106,45 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 5.h,),
                   SearchPlans(),
-                  SizedBox(height: 15.h,),
+                  SizedBox(height: 10.h,),
                   // TestScreen(
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Container(
-                      height: 80.h,
+                      height: 50.h,
                       width: 900.w,
                       child: TabBar(
-                        indicator: BoxDecoration(
-
-                          border: Border.fromBorderSide(
-                            BorderSide(color: Colors.redAccent, width: 1)
-                          ),
-                          // shape: BoxShape.rectangle,
-                          // borderRadius: BorderRadius.circular(50),
-                          color: Colors.grey[600],
-                        ),
-                        indicatorSize: TabBarIndicatorSize.label,
+                        onTap: (int a){
+                          setState(() {
+                            //_controller.index+a
+                            _selectedIndex = a;
+                          });
+                        },
+                        controller: _controller,
+                          indicatorWeight: 5,
+                        // indicatorSize: TabBarIndicatorSize.label,
                         // padding: EdgeInsets.zero,
                           labelColor: Colors.black87,
-                          tabs: List.generate(categoryProvider.categoryData?.length ?? 3, (index) => Tab(text: categoryProvider.categoryData?[index].categoryName,)),
+                          tabs: List.generate(categoryProvider.categoryData?.length ?? 3, (index) {
+                            return Tab(text: categoryProvider.categoryData?[index].categoryName);
+                          })
 
-                          // [
-                          //   Tab(text: "RECOMMENDED PACKS",),
-                          //   Tab(text: "DATA",
-                          //
-                          //   ),
-                          //   Tab(text: "TRUELY UNLIMIT",
-                          //
-                          //   ),
-                          // ]
                       ),
                     ),
                   )
                 ],
               ),
             ),
+                categoryProvider.categoryData?.length != 0?
             Expanded(
               child: Container(
                 height: 570.h,
                 child: TabBarView(
+                  controller: _controller,
                     children:
-                    List.generate(categoryProvider.categoryData!.length, (index) => BottomBoxes())
+                    List.generate(categoryProvider.categoryData!.length, (index) => BottomBoxes(index: index,))
                     // [
                     //   BottomBoxes(),
                     //   BottomBoxes(),
@@ -138,7 +152,7 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                     // ]
                 ),
               ),
-            )
+            ): CircularProgressIndicator()
               ],
             ),
           ),

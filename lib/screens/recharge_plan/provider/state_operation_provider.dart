@@ -34,7 +34,6 @@ class StateOperationProvider  with ChangeNotifier{
 
     try{
       var response = await http.post(Uri.parse(url), body: json.encode(data));
-      print(response.statusCode.toString() + 'State True');
       if (response.statusCode == 200) {
         final msg = jsonDecode(response.body);
         //Check Login Status
@@ -42,7 +41,6 @@ class StateOperationProvider  with ChangeNotifier{
         if (msg[0]['status'] == 'SUCCESS') {
           List<StateListModel>? mobileRechargeData =  StateListModelList.fromJson(msg[1]).data;
           getStateRechargeData(mobileRechargeData);
-          notifyListeners();
           // notifyListeners();
         } else {
         }

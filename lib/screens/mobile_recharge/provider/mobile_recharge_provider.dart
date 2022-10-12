@@ -35,7 +35,6 @@ class MobileRechargeProvider with ChangeNotifier{
           if (msg[0]['status'] == 'SUCCESS') {
             List<Data>? mobileRechargeData =  MobileRechargeModel.fromJson(msg[1]).data;
             getMobileRechargeData(mobileRechargeData);
-            notifyListeners();
             // notifyListeners();
           } else {
           }

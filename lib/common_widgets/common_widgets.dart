@@ -14,7 +14,7 @@ class  CarouselSliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0.r),
             image: DecorationImage(
-              image: AssetImage("assets/slide1.jpg"),
+              image: AssetImage("assets/recharge_banner.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -26,7 +26,7 @@ class  CarouselSliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0.r),
             image: DecorationImage(
-              image: AssetImage("assets/slide1.jpg"),
+              image: AssetImage("assets/recharge_banner.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -50,7 +50,7 @@ class  CarouselSliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0.r),
             image: DecorationImage(
-              image: AssetImage("assets/slide1.jpg"),
+              image: AssetImage("assets/recharge_banner.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -62,7 +62,7 @@ class  CarouselSliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0.r),
             image: DecorationImage(
-              image: AssetImage("assets/slide1.jpg"),
+              image: AssetImage("assets/recharge_banner.png"),
               fit: BoxFit.cover,
             ),
           ),

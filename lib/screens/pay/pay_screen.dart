@@ -1,8 +1,11 @@
 import '../../common_libs.dart';
 import '../mobile_recharge/widgets/mobile_recharge_widgets.dart';
+import '../recharge_plan/models/recharge_categories_model.dart';
+import '../recharge_plan/models/recharge_plan_model.dart';
 
 class PayScreen extends StatefulWidget {
-  const PayScreen({Key? key}) : super(key: key);
+  final RechargePlansListModel? data;
+  const PayScreen({Key? key, required this.data}) : super(key: key);
 
   @override
   State<PayScreen> createState() => _PayScreenState();
