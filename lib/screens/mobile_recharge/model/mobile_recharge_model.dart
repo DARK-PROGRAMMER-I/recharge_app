@@ -20,7 +20,6 @@ class MobileRechargeModel {
     return data;
   }
 }
-
 class Data {
   int? orderid;
   String? rechargeDate;
@@ -30,6 +29,7 @@ class Data {
   String? operator;
   String? operatorimage;
   int? rechargeamount;
+  String? details;
 
   Data(
       {this.orderid,
@@ -39,7 +39,8 @@ class Data {
         this.rechargeplanid,
         this.operator,
         this.operatorimage,
-        this.rechargeamount});
+        this.rechargeamount,
+        this.details});
 
   Data.fromJson(Map<String, dynamic> json) {
     orderid = json['orderid'];
@@ -50,6 +51,7 @@ class Data {
     operator = json['operator'];
     operatorimage = json['operatorimage'];
     rechargeamount = json['rechargeamount'];
+    details = json['details'];
   }
 
   Map<String, dynamic> toJson() {
@@ -62,6 +64,7 @@ class Data {
     data['operator'] = this.operator;
     data['operatorimage'] = this.operatorimage;
     data['rechargeamount'] = this.rechargeamount;
+    data['details'] = this.details;
     return data;
   }
 }

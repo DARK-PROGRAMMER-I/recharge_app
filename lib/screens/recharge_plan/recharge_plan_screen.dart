@@ -1,4 +1,7 @@
+import 'package:provider/provider.dart';
+import 'package:recharge_app/screens/recharge_plan/provider/recharge_plan_providers.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/bottom_boxes.dart';
+import 'package:recharge_app/screens/recharge_plan/widgets/bottom_sheet_custom.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/chips.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/searh_plans.dart';
 
@@ -19,9 +22,12 @@ class RechargePlanScreen extends StatefulWidget {
 class _RechargePlanScreenState extends State<RechargePlanScreen> {
   @override
   Widget build(BuildContext context) {
+    final rechrageProvider = Provider.of<RechargePlanProvider>(context);
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+
         backgroundColor: Color(0xffF2F3FF),
         body: SingleChildScrollView(
           child: Container(
@@ -56,7 +62,11 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomChip(title: 'Airtel Prepaid'),
+                        GestureDetector(
+                            onTap: (){
+                              rechrageProvider.getOpenStatus(true);
+                            },
+                            child: CustomChip(title: 'Airtel Prepaid')),
                         CustomChip(title: 'Maharashtra & Goa'),
                       ],
                     ),
@@ -98,6 +108,7 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
             ),
           ),
         ),
+        bottomSheet: showCustomBottomSheet(context),
       ),
     );
   }

@@ -50,12 +50,7 @@ class ContactList extends StatelessWidget {
                 return Column(children: [
                   SizedBox(height: 10.h,),
                   GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_)=> RechargePlanScreen(
-                        displayName: contact.displayName,
-                        displayNumber: contact.phones[0],
-                      )));
-                    },
+                  onTap: (){},
                     child: ListTile(
                       leading: const CircleAvatar(
                         radius: 20,
@@ -97,7 +92,7 @@ class MobileRechargeAppBar extends StatelessWidget {
             title == 'Mobile Recharge' ? SizedBox.shrink():IconButton(onPressed: (){
               Navigator.pop(context);
             }, icon: Icon(Icons.arrow_back_ios_outlined, size: 16.h,), color: Colors.white, ),
-            SizedBox(width: 70.w,),
+            title == 'Mobile Recharge'  ? SizedBox(width: 100.w,):SizedBox(width: 70.w,),
             Center(child: Text(title, style: TextStyle(fontSize: 20.h, color: Colors.white),))
           ],
         ),

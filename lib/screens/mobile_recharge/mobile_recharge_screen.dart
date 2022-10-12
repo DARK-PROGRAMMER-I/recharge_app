@@ -23,7 +23,7 @@ class _MobileRechargeScreenState extends State<MobileRechargeScreen> {
       backgroundColor: Color(0xffF2F3FF),
       body: SingleChildScrollView(
         child: Container(
-          height: 1250.h,
+          height: 1230.h,
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
