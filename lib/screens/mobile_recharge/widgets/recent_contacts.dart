@@ -16,8 +16,7 @@ class _RecentContactsState extends State<RecentContacts> {
   @override
   Widget build(BuildContext context) {
     final rechargeProvider = Provider.of<MobileRechargeProvider>(context);
-    // rechargeProvider.mobileRechargeData == [] ? rechargeProvider.fetchMobileRechargeData() :
-    // print(rechargeProvider.mobileRechargeData);
+
     return Container(
       width: 370.w,
       height: 350.h,
@@ -59,14 +58,14 @@ class _RecentContactsState extends State<RecentContacts> {
                         )));
                       },
                       child: Container(
-                        height: 64.h,
+                        // height: 64.h,
                         child: ListTile(
                           leading: CachedNetworkImage(
                             imageUrl: rechargeProvider.mobileRechargeData?[index].operatorimage ?? 'https://th.bing.com/th/id/OIP.5KXewlde2jRaBeCwBl_ouQHaFj?w=241&h=180&c=7&r=0&o=5&dpr=1.12&pid=1.7',
                             // height: Dimensions.height40,
                             // width: Dimensions.width40,
                             placeholder: (context, url) =>
-                                Center(child: CircularProgressIndicator()),
+                                CircularProgressIndicator(),
                             errorWidget: (context, url, error) => Icon(Icons.error),
                           ),
                           title: Column(

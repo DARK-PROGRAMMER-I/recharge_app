@@ -3,72 +3,37 @@ import 'dart:convert';
 import 'package:recharge_app/common_libs.dart';
 import 'package:http/http.dart' as http;
 import '../models/StateListModel.dart';
+import '../models/mobile_operator_model.dart';
 
 class RechargePlanProvider with ChangeNotifier{
-  RechargePlanProvider(){
-    fetchMobileRechargePlans();
-    getStateNames();
-  }
 
-
-  List<StateListModel>? _mobileRechargePlans = [];
-  List<StateListModel>? get mobileRechargePlans => _mobileRechargePlans;
-  getMobileRechargeData(List<StateListModel>? plan){
-    _mobileRechargePlans = plan;
+  // Bottom Sheet Work
+  bool _isMobOpBotom = false;
+  bool get isMobOpBotom => _isMobOpBotom;
+  getMobOpBotom(bool status){
+    _isMobOpBotom = status;
     notifyListeners();
   }
 
   // Bottom Sheet Work
-  bool _isOpen = false;
-  bool get isOpen => _isOpen;
-  getOpenStatus(bool status){
-    _isOpen = status;
+  bool _isStateBotom = false;
+  bool get isStateBotom => _isStateBotom;
+  getStateBotom(bool status){
+    _isStateBotom = status;
     notifyListeners();
   }
 
-  String _stateName = '';
-  String get stateName => _stateName;
-  initialName(String name){
-    _stateName = name;
+  String? _mobOpName = '';
+  String? get mobOpName => _mobOpName;
+  getMobOpName(String? name){
+    _mobOpName = name;
     notifyListeners();
   }
 
-  List<String> _stateNames = [];
-  List<String> get stateNames => _stateNames;
-
-  getStateNames(){
-    fetchMobileRechargePlans();
-    mobileRechargePlans?.forEach((element) {
-      _stateNames.add(element.toString());
-    });
+  String? _stateOpName = '';
+  String? get stateOpName => _stateOpName;
+  getStateOpName(String? name){
+    _stateOpName = name;
     notifyListeners();
-  }
-
-  fetchMobileRechargePlans()async{
-    String url = "https://ankretails.com/fastpay/app9/getStateList.php";
-    Map<String, dynamic> data = {
-      'username': 9090909090,
-      'password': 123,
-    };
-
-    try{
-      var response = await http.post(Uri.parse(url), body: json.encode(data));
-      print(response.statusCode.toString() + 'State True');
-      if (response.statusCode == 200) {
-        final msg = jsonDecode(response.body);
-        //Check Login Status
-
-        if (msg[0]['status'] == 'SUCCESS') {
-          List<StateListModel>? mobileRechargeData =  StateListModelList.fromJson(msg[1]).data;
-          getMobileRechargeData(mobileRechargeData);
-          notifyListeners();
-          // notifyListeners();
-        } else {
-        }
-      } else {
-      }
-    }catch(e){
-      print(e.toString());
-    }
   }
 }

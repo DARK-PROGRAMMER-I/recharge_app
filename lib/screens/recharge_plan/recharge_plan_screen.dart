@@ -1,9 +1,10 @@
 import 'package:provider/provider.dart';
 import 'package:recharge_app/screens/recharge_plan/provider/recharge_plan_providers.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/bottom_boxes.dart';
-import 'package:recharge_app/screens/recharge_plan/widgets/bottom_sheet_custom.dart';
+import 'package:recharge_app/screens/recharge_plan/widgets/mob_bottom_sheet_custom.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/chips.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/searh_plans.dart';
+import 'package:recharge_app/screens/recharge_plan/widgets/state_bottom_sheet_custom.dart';
 
 import '../../common_libs.dart';
 import '../../common_widgets/common_widgets.dart';
@@ -34,9 +35,9 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
             height: 1200.h,
             child: Column(
               children: [
-                MobileRechargeAppBar(title: 'Select a recharge plan'),
+            MobileRechargeAppBar(title: 'Select a recharge plan'),
             CarouselSliderWidget(),
-            SizedBox(height: 8.h,),
+                SizedBox(height: 4.h,),
             Card(
               child: Column(
                 children: [
@@ -64,10 +65,17 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                       children: [
                         GestureDetector(
                             onTap: (){
-                              rechrageProvider.getOpenStatus(true);
+                              rechrageProvider.getMobOpBotom(true);
+                              rechrageProvider.getStateBotom(false);
                             },
-                            child: CustomChip(title: 'Airtel Prepaid')),
-                        CustomChip(title: 'Maharashtra & Goa'),
+                            child: CustomChip(title: rechrageProvider.mobOpName.toString())),
+                        GestureDetector(
+                            onTap: (){
+                              rechrageProvider.getStateBotom(true);
+                              rechrageProvider.getMobOpBotom(false);
+
+                            },
+                            child: CustomChip(title: rechrageProvider.stateOpName.toString())),
                       ],
                     ),
                   ),
@@ -108,7 +116,7 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
             ),
           ),
         ),
-        bottomSheet: showCustomBottomSheet(context),
+        bottomSheet: rechrageProvider.isMobOpBotom? showMobOpSheet(context) : rechrageProvider.isStateBotom? showStateOpSheet(context) : null,
       ),
     );
   }

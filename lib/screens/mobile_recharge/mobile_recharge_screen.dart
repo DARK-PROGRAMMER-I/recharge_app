@@ -18,12 +18,13 @@ class _MobileRechargeScreenState extends State<MobileRechargeScreen> {
   @override
   Widget build(BuildContext context) {
     final rechargeProvider = Provider.of<MobileRechargeProvider>(context);
+
     rechargeProvider.fetchMobileRechargeData();
     return Scaffold(
       backgroundColor: Color(0xffF2F3FF),
       body: SingleChildScrollView(
         child: Container(
-          height: 1230.h,
+          height: 1260.h,
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
