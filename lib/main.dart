@@ -1,5 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:recharge_app/screens/mobile_recharge/mobile_recharge_screen.dart';
+import 'package:recharge_app/screens/mobile_recharge/provider/mobile_recharge_provider.dart';
 
 import 'common_libs.dart';
 
@@ -23,13 +25,18 @@ class _MyAppState extends State<MyApp> {
         splitScreenMode: true,
         builder: (BuildContext context, Widget? child) {
 
-     return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.green,
+     return MultiProvider(
+       providers: [
+         ChangeNotifierProvider(create: (_)=> MobileRechargeProvider())
+       ],
+       child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                primarySwatch: Colors.green,
+              ),
+              home: MobileRechargeScreen()
             ),
-            home: MobileRechargeScreen()
-          );
+     );
         }
     );
   }

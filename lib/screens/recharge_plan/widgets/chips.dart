@@ -9,7 +9,7 @@ class CustomChip extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       alignment: Alignment.center,
-      width: 150.w,
+      width: 175.w,
       height: 30.h,
       decoration: BoxDecoration(
           border: Border.all(color: Colors.black38),

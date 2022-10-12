@@ -14,7 +14,8 @@ class _SearchPlansState extends State<SearchPlans> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+
       child: Material(
         borderRadius: BorderRadius.circular(32.r),
         elevation: 5.h,
