@@ -53,6 +53,7 @@ class _RecentContactsState extends State<RecentContacts> {
                     GestureDetector(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (_)=> RechargePlanScreen(
+                          imgLink: rechargeProvider.mobileRechargeData?[index].operatorimage ?? '',
                           displayName: rechargeProvider.mobileRechargeData?[index].rechargePersonName?? 'Name',
                           displayNumber: rechargeProvider.mobileRechargeData?[index].mobileno ?? 'Phone',
                         )));

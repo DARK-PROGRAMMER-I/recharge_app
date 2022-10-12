@@ -2,7 +2,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:recharge_app/screens/mobile_recharge/mobile_recharge_screen.dart';
 import 'package:recharge_app/screens/mobile_recharge/provider/mobile_recharge_provider.dart';
+import 'package:recharge_app/screens/recharge_plan/provider/categories_provider.dart';
 import 'package:recharge_app/screens/recharge_plan/provider/mobile_operation_provider.dart';
+import 'package:recharge_app/screens/recharge_plan/provider/plan_list_provider.dart';
 import 'package:recharge_app/screens/recharge_plan/provider/recharge_plan_providers.dart';
 import 'package:recharge_app/screens/recharge_plan/provider/state_operation_provider.dart';
 
@@ -33,7 +35,9 @@ class _MyAppState extends State<MyApp> {
          ChangeNotifierProvider(create: (_)=> MobileRechargeProvider()),
          ChangeNotifierProvider(create: (_)=> RechargePlanProvider()),
          ChangeNotifierProvider(create: (_)=> MobileOperationProvider()),
-         ChangeNotifierProvider(create: (_)=> StateOperationProvider())
+         ChangeNotifierProvider(create: (_)=> StateOperationProvider()),
+         ChangeNotifierProvider(create: (_)=> PlanListProvider()),
+         ChangeNotifierProvider(create: (_)=> CategoriesProvider()),
        ],
        child: MaterialApp(
               debugShowCheckedModeBanner: false,

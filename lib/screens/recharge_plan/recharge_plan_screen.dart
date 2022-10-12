@@ -1,4 +1,6 @@
 import 'package:provider/provider.dart';
+import 'package:recharge_app/screens/recharge_plan/provider/categories_provider.dart';
+import 'package:recharge_app/screens/recharge_plan/provider/plan_list_provider.dart';
 import 'package:recharge_app/screens/recharge_plan/provider/recharge_plan_providers.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/bottom_boxes.dart';
 import 'package:recharge_app/screens/recharge_plan/widgets/mob_bottom_sheet_custom.dart';
@@ -14,7 +16,9 @@ import '../mobile_recharge/widgets/search_bar.dart';
 class RechargePlanScreen extends StatefulWidget {
   final String displayName;
   final String displayNumber;
-  const RechargePlanScreen({Key? key, required this.displayName, required this.displayNumber}) : super(key: key);
+  final String imgLink;
+
+  const RechargePlanScreen({Key? key, required this.displayName, required this.displayNumber, required this.imgLink}) : super(key: key);
 
   @override
   State<RechargePlanScreen> createState() => _RechargePlanScreenState();
@@ -24,9 +28,13 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
   @override
   Widget build(BuildContext context) {
     final rechrageProvider = Provider.of<RechargePlanProvider>(context);
+    final plansProvider = Provider.of<PlanListProvider>(context);
+    final categoryProvider = Provider.of<CategoriesProvider>(context);
+
+
 
     return DefaultTabController(
-      length: 3,
+      length: categoryProvider.categoryData?.length ?? 3,
       child: Scaffold(
 
         backgroundColor: Color(0xffF2F3FF),
@@ -43,7 +51,7 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                 children: [
                   SizedBox(height: 8.h,),
                   ListTile(
-                    leading: Image.asset('assets/logo-airtel.png'),
+                    leading: Image.asset('assets/logo-airtel.png'), //widget.imgPath
                     title: Column(
                       children: [
                         Text(widget.displayName, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),),
@@ -82,21 +90,37 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
                   SearchPlans(),
                   SizedBox(height: 15.h,),
                   // TestScreen(
-                  Container(
-                    child: TabBar(
-                      // padding: EdgeInsets.zero,
-                        labelColor: Colors.black87,
-                        tabs: [
-                          Tab(text: "RECOMMENDED PACKS",
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      height: 80.h,
+                      width: 900.w,
+                      child: TabBar(
+                        indicator: BoxDecoration(
 
+                          border: Border.fromBorderSide(
+                            BorderSide(color: Colors.redAccent, width: 1)
                           ),
-                          Tab(text: "DATA",
+                          // shape: BoxShape.rectangle,
+                          // borderRadius: BorderRadius.circular(50),
+                          color: Colors.grey[600],
+                        ),
+                        indicatorSize: TabBarIndicatorSize.label,
+                        // padding: EdgeInsets.zero,
+                          labelColor: Colors.black87,
+                          tabs: List.generate(categoryProvider.categoryData?.length ?? 3, (index) => Tab(text: categoryProvider.categoryData?[index].categoryName,)),
 
-                          ),
-                          Tab(text: "TRUELY UNLIMIT",
-
-                          ),
-                        ]),
+                          // [
+                          //   Tab(text: "RECOMMENDED PACKS",),
+                          //   Tab(text: "DATA",
+                          //
+                          //   ),
+                          //   Tab(text: "TRUELY UNLIMIT",
+                          //
+                          //   ),
+                          // ]
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -105,11 +129,14 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> {
               child: Container(
                 height: 570.h,
                 child: TabBarView(
-                    children: [
-                      BottomBoxes(),
-                      BottomBoxes(),
-                      BottomBoxes(),
-                    ]),
+                    children:
+                    List.generate(categoryProvider.categoryData!.length, (index) => BottomBoxes())
+                    // [
+                    //   BottomBoxes(),
+                    //   BottomBoxes(),
+                    //   BottomBoxes(),
+                    // ]
+                ),
               ),
             )
               ],
