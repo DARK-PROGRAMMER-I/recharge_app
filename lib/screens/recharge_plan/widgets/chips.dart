@@ -18,7 +18,13 @@ class CustomChip extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: TextStyle(fontSize: 13),),
+          Container(
+            width: 130.w,
+            child: Text(
+              overflow: TextOverflow.ellipsis,
+              title,
+              style: TextStyle(fontSize: 13),),
+          ),
           Icon(Icons.arrow_forward_ios, size: 13,)
         ],
       ),

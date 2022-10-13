@@ -19,7 +19,7 @@ class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 480.h,
+      height: 450.h,
       margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -83,7 +83,7 @@ class MobileRechargeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.h,
+      height: 100.h,
       color: Color(0xff041e55),
       child: Padding(
         padding: EdgeInsets.only(left: 5.w, top: 50.h),
@@ -91,9 +91,9 @@ class MobileRechargeAppBar extends StatelessWidget {
           children: [
             title == 'Mobile Recharge' ? SizedBox.shrink():IconButton(onPressed: (){
               Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back_ios_outlined, size: 16.h,), color: Colors.white, ),
+            }, icon: Icon(Icons.arrow_back_ios_outlined, size: 15.h,), color: Colors.white, ),
             title == 'Mobile Recharge'  ? SizedBox(width: 100.w,):SizedBox(width: 60.w,),
-            Center(child: Text(title, style: TextStyle(fontSize: 20.h, color: Colors.white),))
+            Center(child: Text(title, style: TextStyle(fontSize: 18.h, color: Colors.white),))
           ],
         ),
       ),

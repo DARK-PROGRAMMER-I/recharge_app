@@ -1,4 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recharge_app/screens/success/widgets/center_text.dart';
+import 'package:recharge_app/screens/success/widgets/payment_success_status.dart';
 
 import '../../common_libs.dart';
 
@@ -13,7 +15,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff041764),
+      backgroundColor: Color(0xff02072F),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -29,6 +31,31 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
               child: Icon(Icons.check_rounded, size: 40, color: Colors.green[900],),
             ),
           ),
+          CenterText(),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 30.h),
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width - 60,
+            child: Text(
+              textAlign: TextAlign.center,
+              'Plan benefits have been applied to 8087230XXX',
+              style: TextStyle(fontSize: 20.h, color: Colors.red[300]),
+            ),
+          ),
+        Center(
+          child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 15.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                PaymentSuccessStatus(title: 'View Details'),
+                PaymentSuccessStatus(title: 'Check Balance'),
+
+              ],
+            ),
+          ),
+        )
+        //
         ],
       ),
     );

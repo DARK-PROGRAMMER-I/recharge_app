@@ -49,7 +49,6 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> with SingleTick
     final rechrageProvider = Provider.of<RechargePlanProvider>(context);
     final plansProvider = Provider.of<PlanListProvider>(context);
     final categoryProvider = Provider.of<CategoriesProvider>(context);
-
     plansProvider.fetchMobileRechargePlans('${_controller.index +1}');
 
     return DefaultTabController(
@@ -110,28 +109,27 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> with SingleTick
                   SearchPlans(),
                   SizedBox(height: 10.h,),
                   // TestScreen(
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      height: 50.h,
-                      width: 900.w,
-                      child: TabBar(
-                        onTap: (int a){
-                          setState(() {
-                            //_controller.index+a
-                            _selectedIndex = a;
-                          });
-                        },
-                        controller: _controller,
-                          indicatorWeight: 5,
-                        // indicatorSize: TabBarIndicatorSize.label,
-                        // padding: EdgeInsets.zero,
-                          labelColor: Colors.black87,
-                          tabs: List.generate(categoryProvider.categoryData?.length ?? 3, (index) {
-                            return Tab(text: categoryProvider.categoryData?[index].categoryName);
-                          })
+                  Container(
+                    height: 50.h,
+                    width: 900.w,
+                    child: TabBar(
+                      isScrollable: true,
+                      physics: ScrollPhysics(),
+                      onTap: (int a){
+                        setState(() {
+                          //_controller.index+a
+                          _selectedIndex = a;
+                        });
+                      },
+                      controller: _controller,
+                        indicatorWeight: 5,
+                      // indicatorSize: TabBarIndicatorSize.label,
+                      // padding: EdgeInsets.zero,
+                        labelColor: Colors.black87,
+                        tabs: List.generate(categoryProvider.categoryData?.length ?? 3, (index) {
+                          return Tab(text: categoryProvider.categoryData?[index].categoryName);
+                        })
 
-                      ),
                     ),
                   )
                 ],
@@ -144,12 +142,11 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> with SingleTick
                 child: TabBarView(
                   controller: _controller,
                     children:
-                    List.generate(categoryProvider.categoryData!.length, (index) => BottomBoxes(index: index,))
-                    // [
-                    //   BottomBoxes(),
-                    //   BottomBoxes(),
-                    //   BottomBoxes(),
-                    // ]
+                    List.generate(categoryProvider.categoryData!.length, (index) => BottomBoxes(
+                      index: index,
+                      name: widget.displayName,
+                      phone: widget.displayNumber,
+                    ))
                 ),
               ),
             ): CircularProgressIndicator()

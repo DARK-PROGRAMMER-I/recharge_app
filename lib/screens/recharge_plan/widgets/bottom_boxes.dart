@@ -5,7 +5,9 @@ import '../provider/recharge_plan_providers.dart';
 
 class BottomBoxes extends StatefulWidget {
   final int index;
-  const BottomBoxes({Key? key, required this.index}) : super(key: key);
+  final String name;
+  final String phone;
+  const BottomBoxes({Key? key, required this.index, required this.name, required this.phone}) : super(key: key);
 
   @override
   State<BottomBoxes> createState() => _BottomBoxesState();
@@ -20,15 +22,17 @@ class _BottomBoxesState extends State<BottomBoxes> {
 
     return plansProvider.stateRechargePlans?.length != 0 ?
     Container(
-      width: 375.w,
-      height: 600.h,
       child: ListView.builder(
           padding: EdgeInsets.zero,
           itemCount: plansProvider.stateRechargePlans?.length,
           itemBuilder: (context, index){
             return GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> PayScreen(data: plansProvider.stateRechargePlans?[index],)));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> PayScreen(
+                  data: plansProvider.stateRechargePlans?[index],
+                  name: widget.name,
+                  phone : widget.phone,
+                )));
               },
               child: Container(
                 child: Column(
@@ -39,7 +43,7 @@ class _BottomBoxesState extends State<BottomBoxes> {
                         height: 130.h,
                         width: 375.w,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
@@ -57,7 +61,14 @@ class _BottomBoxesState extends State<BottomBoxes> {
                               child: Text('${plansProvider.stateRechargePlans?[index].planName ?? ' Name'}', style: TextStyle(color: Colors.white),),
                             ),
                             Text('R${plansProvider.stateRechargePlans?[index].planAmount ?? ' Name'}', style: TextStyle(color: Colors.black87, fontSize: 22.h, fontWeight: FontWeight.bold ),),
-                            Text('Data : ${plansProvider.stateRechargePlans?[index].planDescription ?? ' Name'}', style: TextStyle(color: Colors.black87, fontSize: 14.h, fontWeight: FontWeight.bold ),),
+
+                            Container(
+                              width: 200.w,
+                              child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                'Data : ${plansProvider.stateRechargePlans?[index].planDescription ?? ' Name'}',
+                                style: TextStyle(color: Colors.black87, fontSize: 14.h, fontWeight: FontWeight.bold ),),
+                            ),
                             Text('${plansProvider.stateRechargePlans?[index].validity ?? ' Name'}', style: TextStyle(color: Colors.black87, fontSize: 16.h, fontWeight: FontWeight.w300 ),)
                           ],
                         ),

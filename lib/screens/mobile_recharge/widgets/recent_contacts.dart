@@ -18,6 +18,8 @@ class _RecentContactsState extends State<RecentContacts> {
   Widget build(BuildContext context) {
     final rechargeProvider = Provider.of<MobileRechargeProvider>(context);
     final categoryProvider = Provider.of<CategoriesProvider>(context);
+
+    rechargeProvider.fetchMobileRechargeData();
     return Container(
       width: 370.w,
       height: 350.h,

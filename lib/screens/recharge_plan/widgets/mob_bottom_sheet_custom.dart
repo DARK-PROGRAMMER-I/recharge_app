@@ -11,7 +11,6 @@ Widget? showMobOpSheet(BuildContext context) {
   final mobileOpProvider = Provider.of<MobileOperationProvider>(context, listen: false);
   WidgetsBinding.instance.addPostFrameCallback((_){
     mobileOpProvider.fetchMobileOperatiorPlans();
-    // print(rechrageProvider.mobileOpPlans?[0].operatorImage);
   });
 
 

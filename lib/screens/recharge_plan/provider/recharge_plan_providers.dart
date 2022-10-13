@@ -1,5 +1,7 @@
 import 'package:recharge_app/common_libs.dart';
 
+import '../models/recharge_plan_model.dart';
+
 
 class RechargePlanProvider with ChangeNotifier{
 
@@ -19,6 +21,20 @@ class RechargePlanProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  // Plan Bottom Sheet Work
+  bool _isPlanBotOp = false;
+  bool get isPlanBotOp => _isPlanBotOp;
+  getPlanBotOp(bool status){
+    _isPlanBotOp = status;
+    notifyListeners();
+  }
+
+  RechargePlansListModel? _data;
+  RechargePlansListModel? get data => _data;
+  getSelectedPlan(RechargePlansListModel? dat){
+    _data = dat;
+    notifyListeners();
+  }
   String? _mobOpName = 'Airtel Prepaid';
   String? get mobOpName => _mobOpName;
   getMobOpName(String? name){

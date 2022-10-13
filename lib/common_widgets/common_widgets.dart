@@ -8,7 +8,6 @@ class  CarouselSliderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  CarouselSlider(
       items: [
-        //1st Image of Slider
         Container(
           margin: EdgeInsets.symmetric(horizontal: 1.5.w, vertical: 1.h),
           decoration: BoxDecoration(
