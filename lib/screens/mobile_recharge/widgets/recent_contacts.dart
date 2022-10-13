@@ -48,6 +48,7 @@ class _RecentContactsState extends State<RecentContacts> {
           Expanded(
             flex: 5,
             child: ListView.builder(
+              // physics: NeverScrollableScrollPhysics(),
               itemCount: rechargeProvider.mobileRechargeData?.length ?? 0,
               padding: EdgeInsets.zero,
               itemBuilder: (context, index){

@@ -58,9 +58,9 @@ class _BottomBoxesState extends State<BottomBoxes> {
                                       bottomRight: Radius.circular(30.r)
                                   )
                               ),
-                              child: Text('${plansProvider.stateRechargePlans?[index].planName ?? ' Name'}', style: TextStyle(color: Colors.white),),
+                              child: Text('${plansProvider.stateRechargePlans?[index].planName ?? ' Name'}', style: TextStyle(color: Colors.white, fontSize: 15.h),),
                             ),
-                            Text('R${plansProvider.stateRechargePlans?[index].planAmount ?? ' Name'}', style: TextStyle(color: Colors.black87, fontSize: 22.h, fontWeight: FontWeight.bold ),),
+                            Text('R${plansProvider.stateRechargePlans?[index].planAmount ?? ' Name'}', style: TextStyle(color: Colors.black87, fontSize: 18.h, fontWeight: FontWeight.bold ),),
 
                             Container(
                               width: 200.w,

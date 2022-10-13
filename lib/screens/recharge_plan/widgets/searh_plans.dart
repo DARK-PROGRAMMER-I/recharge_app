@@ -23,9 +23,13 @@ class _SearchPlansState extends State<SearchPlans> {
         child: TextFormField(
           key: globalKey,
           controller: _searchCtr,
+          style: TextStyle(
+            fontSize: 16.h
+          ),
+
           decoration: InputDecoration(
 
-            border: OutlineInputBorder(
+              border: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.white),
               borderRadius: BorderRadius.circular(32.r),
             ),
@@ -42,9 +46,11 @@ class _SearchPlansState extends State<SearchPlans> {
               borderRadius: BorderRadius.circular(32.r),
             ),
 
-            contentPadding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+            // contentPadding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+            contentPadding: EdgeInsets.only(top: 30.h),
             prefixIcon: Image.asset('assets/search.png'),
             hintText: 'Search For plan, eg 230 or 330',
+            
           ),
           onChanged: (val){
             print(val);

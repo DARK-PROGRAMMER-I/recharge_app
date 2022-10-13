@@ -69,21 +69,25 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> with SingleTick
                 children: [
                   SizedBox(height: 8.h,),
                   ListTile(
-                    leading: Image.asset('assets/logo-airtel.png'), //widget.imgPath
-                    title: Column(
-                      children: [
-                        Text(widget.displayName, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),),
-                        SizedBox(height: 5.h,),
-                        Text(widget.displayNumber, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),),
-                        SizedBox(height: 5.h,),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    leading: Image.asset('assets/logo-airtel.png', scale: 1.1,), //widget.imgPath
+                    title: Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: Column(
+                        children: [
+                          Text(widget.displayName, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),),
+                          SizedBox(height: 5.h,),
+                          Text(widget.displayNumber, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 13),),
+                          SizedBox(height: 5.h,),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
                     ),
                     trailing: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios, size: 15,color: Colors.black,)),
 
                   ),
                   Divider(),
+                  SizedBox(height: 5.h,),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 5.w,),
                     child: Row(
@@ -123,8 +127,6 @@ class _RechargePlanScreenState extends State<RechargePlanScreen> with SingleTick
                       },
                       controller: _controller,
                         indicatorWeight: 5,
-                      // indicatorSize: TabBarIndicatorSize.label,
-                      // padding: EdgeInsets.zero,
                         labelColor: Colors.black87,
                         tabs: List.generate(categoryProvider.categoryData?.length ?? 3, (index) {
                           return Tab(text: categoryProvider.categoryData?[index].categoryName);
